@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34112.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieMate.Maui", "MovieMate.Maui.csproj", "{D99E4CF3-7A5A-45B5-8AB0-877685E5D041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieMate.Maui", "MovieMate.Maui\MovieMate.Maui.csproj", "{D99E4CF3-7A5A-45B5-8AB0-877685E5D041}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2C2841C-C999-455F-93C8-956440D5BE06}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieMate.Api", "MovieMate.Api\MovieMate.Api.csproj", "{E8CE6E8F-5FF6-4EAD-B8C6-EA4CE53804AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{D99E4CF3-7A5A-45B5-8AB0-877685E5D041}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D99E4CF3-7A5A-45B5-8AB0-877685E5D041}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D99E4CF3-7A5A-45B5-8AB0-877685E5D041}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E8CE6E8F-5FF6-4EAD-B8C6-EA4CE53804AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8CE6E8F-5FF6-4EAD-B8C6-EA4CE53804AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8CE6E8F-5FF6-4EAD-B8C6-EA4CE53804AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8CE6E8F-5FF6-4EAD-B8C6-EA4CE53804AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
