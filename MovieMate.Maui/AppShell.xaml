@@ -2,13 +2,29 @@
     x:Class="MovieMate.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MovieMate.Maui.Views"
+    xmlns:controls="clr-namespace:MovieMate.Maui.Controls"
+    xmlns:views="clr-namespace:MovieMate.Maui.Views"
     Title="MovieMate.Maui"
-    Shell.FlyoutBehavior="Disabled">
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight},
+                                      Dark={StaticResource BackgroundColorDark}}"
+    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight},
+                                            Dark={StaticResource BackgroundColorDark}}"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.ForegroundColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                            Dark={StaticResource ContrastColorDark}}"
+    Shell.TabBarUnselectedColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                                  Dark={StaticResource MediumContrastColorDark}}"
+    Shell.TitleColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                       Dark={StaticResource ContrastColorDark}}">
 
-    <ShellContent
-        Title="Movie Collection"
-        ContentTemplate="{DataTemplate local:MovieCollectionView}"
-        Route="MovieCollectionView" />
+    <TabBar>
+        <controls:BaseShellTab Title="Your collection" Glyph="{StaticResource IconList}">
+            <ShellContent ContentTemplate="{DataTemplate views:MovieCollectionView}" />
+        </controls:BaseShellTab>
+
+        <controls:BaseShellTab Title="Author" Glyph="{StaticResource IconLicense}">
+            <ShellContent ContentTemplate="{DataTemplate views:AboutView}" />
+        </controls:BaseShellTab>
+    </TabBar>
 
 </Shell>

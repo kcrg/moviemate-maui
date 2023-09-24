@@ -39,10 +39,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" ForegroundScale="0.4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" TintColor="#D3D3D3" ForegroundScale="0.4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="White" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#303030" TintColor="#D3D3D3" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,7 +57,6 @@
 	  <None Remove=".gitignore" />
 	  <None Remove="LICENSE" />
 	  <None Remove="README.md" />
-	  <None Remove="Resources\Fonts\tabler-icons.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,24 +65,6 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.1.23419.4" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\IconFont.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AboutView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MovieCollectionView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MovieDetailsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MovieEditView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

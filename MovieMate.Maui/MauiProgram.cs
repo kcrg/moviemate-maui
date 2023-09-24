@@ -16,8 +16,9 @@ public static class MauiProgram
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("tabler-icons.ttf", "IconFont");
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("Lato-Regular.ttf", "LatoRegular");
+                fonts.AddFont("Lato-Bold.ttf", "LatoBold");
+                fonts.AddFont("Lato-Black.ttf", "LatoBlack");
             })
             .Services
             .RegisterViews()
@@ -59,6 +60,9 @@ public static class MauiProgram
     private static IServiceCollection RegisterMauiServices(this IServiceCollection services)
     {
         services.AddSingleton(AppInfo.Current);
+        services.AddSingleton(Browser.Default);
+        services.AddSingleton(Email.Default);
+        services.AddSingleton(PhoneDialer.Default);
 
         return services;
     }

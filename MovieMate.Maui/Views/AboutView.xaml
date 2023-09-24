@@ -2,11 +2,96 @@
     x:Class="MovieMate.Maui.Views.AboutView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="AboutView">
-    <VerticalStackLayout>
+    xmlns:vm="clr-namespace:MovieMate.Maui.ViewModels"
+    Title="About"
+    x:DataType="vm:AboutViewModel">
+
+    <Grid RowDefinitions="*,Auto">
         <Label
+            Margin="12"
+            HorizontalTextAlignment="Center"
+            IsVisible="{Binding ShowVersions}"
+            VerticalOptions="End">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding AppVersion}" />
+                    <Span Text="&#x0a;" />
+                    <Span Text="{Binding MauiVersion}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <VerticalStackLayout
+            x:Name="DescriptionPanel"
             HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+            Opacity="0"
+            Spacing="12"
+            VerticalOptions="Center">
+
+            <Label
+                FontFamily="{StaticResource LatoBold}"
+                FontSize="32"
+                HorizontalOptions="Center"
+                Text="Kacper Tryniecki" />
+            <Label
+                HorizontalOptions="Center"
+                Text=".NET MAUI Developer"
+                TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                            Dark={StaticResource MediumContrastColorDark}}"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowMauiVersionCommand, Mode=OneTime}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Margin="0,24,0,0"
+                FontFamily="{StaticResource LatoBold}"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Contact:"
+                TextColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                            Dark={StaticResource ContrastColorDark}}" />
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Phone: " TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight}, Dark={StaticResource MediumContrastColorDark}}" />
+                        <Span
+                            Text="+48 733 428 869"
+                            TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                                        Dark={StaticResource MediumContrastColorDark}}"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PhoneTappedCommand, Mode=OneTime}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="E-mail: " TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight}, Dark={StaticResource MediumContrastColorDark}}" />
+                        <Span
+                            Text="kacper@tryniecki.com"
+                            TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                                        Dark={StaticResource MediumContrastColorDark}}"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EmailTappedCommand, Mode=OneTime}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+
+        <Button
+            x:Name="GithubButton"
+            Grid.Row="1"
+            Margin="18"
+            Command="{Binding OpenGithubCommand, Mode=OneTime}"
+            Opacity="0"
+            Text="Github" />
+    </Grid>
 </ContentPage>
