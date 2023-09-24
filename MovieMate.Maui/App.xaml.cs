@@ -1,6 +1,8 @@
-﻿namespace MovieMate.Maui;
+﻿using TinyMvvm;
 
-public partial class App : Application
+namespace MovieMate.Maui;
+
+public partial class App : TinyApplication
 {
     public App()
     {

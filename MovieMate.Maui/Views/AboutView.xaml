@@ -1,7 +1,8 @@
-<ContentPage
+<mvvm:TinyView
     x:Class="MovieMate.Maui.Views.AboutView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
     xmlns:vm="clr-namespace:MovieMate.Maui.ViewModels"
     Title="About"
     x:DataType="vm:AboutViewModel">
@@ -94,4 +95,4 @@
             Opacity="0"
             Text="Github" />
     </Grid>
-</ContentPage>
+</mvvm:TinyView>

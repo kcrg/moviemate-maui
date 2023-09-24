@@ -1,7 +1,13 @@
 ﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
+using MovieMate.Api;
 using MovieMate.Maui.ViewModels;
 using MovieMate.Maui.Views;
+using TinyMvvm;
+
+
+#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
 
 namespace MovieMate.Maui;
 
@@ -13,6 +19,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseTinyMvvm()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("tabler-icons.ttf", "IconFont");
@@ -24,7 +31,10 @@ public static class MauiProgram
             .RegisterViews()
             .RegisterViewModels()
             .RegisterServices()
-            .RegisterMauiServices();
+            .RegisterMauiServices()
+            .RegisterRefitApiServices()
+            .RegisterApiServices();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

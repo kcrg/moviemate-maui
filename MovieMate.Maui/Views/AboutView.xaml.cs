@@ -2,7 +2,7 @@ using MovieMate.Maui.ViewModels;
 
 namespace MovieMate.Maui.Views;
 
-public partial class AboutView : ContentPage
+public partial class AboutView
 {
 	public AboutView(AboutViewModel vm)
 	{
