@@ -2,7 +2,7 @@
 
 namespace MovieMate.Api.Models;
 
-internal class MovieDto
+public class MovieDto
 {
     [JsonPropertyName("id")]
     public int? Id;
