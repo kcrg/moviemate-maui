@@ -5,17 +5,17 @@ namespace MovieMate.Api.Models;
 public class MovieDto
 {
     [JsonPropertyName("id")]
-    public int? Id;
+    public int? Id { get; set; }
 
     [JsonPropertyName("title")]
-    public string? Title;
+    public string? Title { get; set; }
 
     [JsonPropertyName("director")]
-    public string? Director;
+    public string? Director { get; set; }
 
     [JsonPropertyName("year")]
-    public int? Year;
+    public int? Year { get; set; }
 
     [JsonPropertyName("rate")]
-    public int? Rate;
+    public int? Rate { get; set; }
 }

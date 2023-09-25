@@ -69,7 +69,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
 	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
@@ -87,4 +86,6 @@
     <CodesignEntitlements>Platforms/MacCatalyst/Entitlements.Release.plist</CodesignEntitlements>
     <UseHardenedRuntime>true</UseHardenedRuntime>
   </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMovieMateMauiHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>

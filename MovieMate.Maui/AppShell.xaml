@@ -18,7 +18,10 @@
                                        Dark={StaticResource ContrastColorDark}}">
 
     <TabBar>
-        <controls:BaseShellTab Title="Your collection" Glyph="{StaticResource IconList}">
+        <controls:BaseShellTab
+            Title="Your collection"
+            Glyph="{StaticResource IconList}"
+            Route="MovieCollectionView">
             <ShellContent ContentTemplate="{DataTemplate views:MovieCollectionView}" />
         </controls:BaseShellTab>
 

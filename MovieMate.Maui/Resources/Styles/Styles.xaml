@@ -30,4 +30,9 @@
         <Setter Property="CornerRadius" Value="25" />
     </Style>
 
+    <Style ApplyToDerivedTypes="True" TargetType="RefreshView">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}" />
+        <Setter Property="RefreshColor" Value="{AppThemeBinding Light={StaticResource ContrastColorLight}, Dark={StaticResource ContrastColorDark}}" />
+    </Style>
+
 </ResourceDictionary>

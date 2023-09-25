@@ -2,8 +2,9 @@
 
 namespace MovieMate.Api.Models;
 
-[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Default, DefaultIgnoreCondition = JsonIgnoreCondition.Never)]
-[JsonSerializable(typeof(MovieDto))]
+[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Default, 
+    PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+[JsonSerializable(typeof(List<MovieDto>))]
 public partial class JsonSourceGenerationContext : JsonSerializerContext
 {
 }
