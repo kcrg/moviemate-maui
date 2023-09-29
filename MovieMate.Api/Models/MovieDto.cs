@@ -1,11 +1,15 @@
-﻿using System.Text.Json.Serialization;
+﻿using SQLite;
+using System.Text.Json.Serialization;
 
 namespace MovieMate.Api.Models;
 
 public class MovieDto
 {
+    [PrimaryKey, AutoIncrement, Indexed]
+    public int LocalId { get; set; }
+
     [JsonPropertyName("id")]
-    public int? Id { get; set; }
+    public int? RemoteId { get; set; }
 
     [JsonPropertyName("title")]
     public string? Title { get; set; }

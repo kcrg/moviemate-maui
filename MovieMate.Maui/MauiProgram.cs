@@ -6,8 +6,6 @@ using TinyMvvm;
 using MovieMate.Maui.Services;
 using MovieMate.Maui.Services.Implementations;
 
-
-
 #if DEBUG
 using Microsoft.Extensions.Logging;
 #endif
@@ -67,6 +65,7 @@ public static class MauiProgram
 
     private static IServiceCollection RegisterServices(this IServiceCollection services)
     {
+        services.AddSingleton<IMoviesDatabaseService, MoviesDatabaseService>();
         services.AddSingleton<INavigationService, NavigationService>();
 
         return services;
