@@ -10,7 +10,16 @@
     Title="Collection"
     x:DataType="vm:MovieCollectionViewModel">
     <ContentPage.ToolbarItems>
-        <controls:BaseToolbarItem Command="{Binding AddMovieCommand}" Glyph="{StaticResource IconPlus}" />
+        <controls:BaseToolbarItem
+            Command="{Binding WipeListCommand}"
+            Glyph="{StaticResource IconTrash}"
+            GlyphColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                         Dark={StaticResource ContrastColorDark}}" />
+        <controls:BaseToolbarItem
+            Command="{Binding AddMovieCommand}"
+            Glyph="{StaticResource IconPlus}"
+            GlyphColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                         Dark={StaticResource ContrastColorDark}}" />
     </ContentPage.ToolbarItems>
 
     <Grid
@@ -37,61 +46,70 @@
                     FontFamily="{StaticResource LatoBold}"
                     FontSize="26"
                     HorizontalOptions="Center"
-                    Text="Coś poszło nie tak."
+                    Text="Something went wrong."
                     VerticalOptions="Center" />
 
                 <Label
                     FontSize="16"
                     HorizontalOptions="Center"
-                    VerticalOptions="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Kod błędu: " TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight}, Dark={StaticResource MediumContrastColorDark}}" />
-                            <Span Text="{Binding ErrorCode}" TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight}, Dark={StaticResource MediumContrastColorDark}}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                    Text="{Binding ErrorCode}"
+                    TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                                Dark={StaticResource MediumContrastColorDark}}"
+                    VerticalOptions="Center" />
             </VerticalStackLayout>
+            <Grid toolkit:StateView.StateKey="Success">
+                <RefreshView Command="{Binding RefreshCommand, Mode=OneTime}" IsRefreshing="{Binding IsRefreshing}">
+                    <CollectionView ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding MovieList}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="m:MovieDto">
+                                <Grid>
+                                    <Border Margin="8,0" BackgroundColor="{AppThemeBinding Light={StaticResource ControlsBackgroundColorLight}, Dark={StaticResource ControlsBackgroundColorDark}}">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout Margin="12">
+                                            <Label Text="{Binding Title}" />
+                                            <Label Text="{Binding Director}" />
+                                            <Label Text="{Binding Year}" />
+                                            <Label Text="{Binding Rate}" />
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
 
-            <RefreshView toolkit:StateView.StateKey="Success">
-                <CollectionView ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding MovieList}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="m:MovieDto">
-                            <Grid ColumnDefinitions="3*,7*" RowDefinitions="22,*">
+                        <CollectionView.EmptyView>
+                            <VerticalStackLayout Spacing="8" VerticalOptions="Center">
+                                <Label
+                                    FontFamily="{StaticResource LatoBold}"
+                                    FontSize="26"
+                                    HorizontalOptions="Center"
+                                    Text="Movie list is empty."
+                                    VerticalOptions="Center" />
 
-                                <Border
-                                    Grid.Row="1"
-                                    Grid.ColumnSpan="2"
-                                    Margin="0,0,0,12"
-                                    BackgroundColor="Gray" />
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    Text="Try refresh list or add new movie."
+                                    TextColor="{AppThemeBinding Light={StaticResource MediumContrastColorLight},
+                                                                Dark={StaticResource MediumContrastColorDark}}"
+                                    VerticalOptions="Center" />
+                            </VerticalStackLayout>
+                        </CollectionView.EmptyView>
 
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Margin="12">
+                        <CollectionView.Header>
+                            <BoxView HeightRequest="8" />
+                        </CollectionView.Header>
+                        <CollectionView.Footer>
+                            <BoxView HeightRequest="8" />
+                        </CollectionView.Footer>
+                    </CollectionView>
+                </RefreshView>
 
-                                    <Label Text="{Binding Title}" />
-                                    <Label Text="{Binding Director}" />
-                                    <Label Text="{Binding Rate}" />
-                                    <Label Text="{Binding Year}" />
-                                </VerticalStackLayout>
-
-                                <Image
-                                    Grid.Row="1"
-                                    Margin="8,0,8,8"
-                                    TranslationY="-12">
-                                    <Image.Source>
-                                        <UriImageSource CachingEnabled="False" Uri="https://picsum.photos/600/1000?random=2&amp;blur=2&amp;grayscale" />
-                                    </Image.Source>
-                                </Image>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </RefreshView>
+            </Grid>
         </toolkit:StateContainer.StateViews>
     </Grid>
 </mvvm:TinyView>

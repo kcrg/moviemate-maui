@@ -4,6 +4,7 @@
 
     <!--  Light Colors  -->
     <Color x:Key="BackgroundColorLight">#e0e0e0</Color>
+    <Color x:Key="ControlsBackgroundColorLight">#f2f2f2</Color>
     <Color x:Key="ContrastColorLight">#31344b</Color>
     <Color x:Key="MediumContrastColorLight">DarkGray</Color>
     <Color x:Key="LowContrastColorLight">LightGray</Color>
@@ -12,6 +13,7 @@
 
     <!--  Dark Colors  -->
     <Color x:Key="BackgroundColorDark">#303030</Color>
+    <Color x:Key="ControlsBackgroundColorDark">#292929</Color>
     <Color x:Key="ContrastColorDark">LightGray</Color>
     <Color x:Key="MediumContrastColorDark">Gray</Color>
     <Color x:Key="LowContrastColorDark">DarkGray</Color>
