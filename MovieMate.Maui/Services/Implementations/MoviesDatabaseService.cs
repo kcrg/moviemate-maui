@@ -36,11 +36,11 @@ public class MoviesDatabaseService : IMoviesDatabaseService, IAsyncDisposable
         return await Database!.Table<MovieDto>().Where(i => i.LocalId == id).FirstOrDefaultAsync();
     }
 
-    public async Task<int> SaveItemAsync(MovieDto item)
+    public async Task<int> SaveOrUpdateItemAsync(MovieDto item)
     {
         await Init();
 
-        if (item.RemoteId != 0)
+        if (item.RemoteId != 0 && item.RemoteId != null)
         {
             var existingItem = await Database!.Table<MovieDto>().Where(i => i.RemoteId == item.RemoteId).FirstOrDefaultAsync();
 
@@ -49,6 +49,10 @@ public class MoviesDatabaseService : IMoviesDatabaseService, IAsyncDisposable
                 item.RemoteId = existingItem.RemoteId;
                 return await Database!.UpdateAsync(item);
             }
+        }
+        else if (item.LocalId != 0)
+        {
+            return await Database!.UpdateAsync(item);
         }
 
         return await Database!.InsertAsync(item);

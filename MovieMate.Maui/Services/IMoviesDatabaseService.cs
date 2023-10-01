@@ -6,7 +6,7 @@ public interface IMoviesDatabaseService
 {
     Task<MovieDto> GetItemAsync(int id);
     Task<List<MovieDto>> GetItemsAsync();
-    Task<int> SaveItemAsync(MovieDto item);
+    Task<int> SaveOrUpdateItemAsync(MovieDto item);
     Task<int> DeleteItemAsync(MovieDto item);
     Task<int> WipeDatabaseAsync();
 
