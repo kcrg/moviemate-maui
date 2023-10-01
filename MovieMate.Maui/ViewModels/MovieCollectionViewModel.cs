@@ -17,6 +17,7 @@ public partial class MovieCollectionViewModel : BaseViewModel
 {
     private readonly IMyMoviesApi myMoviesApi;
     private readonly IMoviesDatabaseService moviesDatabaseService;
+    private readonly IMessageDialogService messageDialogService;
 
     [ObservableProperty]
     string errorCode = "🥵🥵🥵";
@@ -27,10 +28,11 @@ public partial class MovieCollectionViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<MovieDto> movieList;
 
-    public MovieCollectionViewModel(IMyMoviesApi myMoviesApi, IMoviesDatabaseService moviesDatabaseService)
+    public MovieCollectionViewModel(IMyMoviesApi myMoviesApi, IMoviesDatabaseService moviesDatabaseService, IMessageDialogService messageDialogService)
     {
         this.myMoviesApi = myMoviesApi;
         this.moviesDatabaseService = moviesDatabaseService;
+        this.messageDialogService = messageDialogService;
 
         MovieList = [];
     }
@@ -107,6 +109,13 @@ public partial class MovieCollectionViewModel : BaseViewModel
     [RelayCommand]
     private async Task DeleteMovie(MovieDto movie)
     {
+        var result = await messageDialogService.ShowMessageDialog("Warning", "Are you sure?");
+
+        if (!result)
+        {
+            return;
+        }
+
         MovieList.Remove(movie);
         await moviesDatabaseService.DeleteItemAsync(movie);
     }

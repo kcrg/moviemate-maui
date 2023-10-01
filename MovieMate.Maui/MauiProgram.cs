@@ -65,6 +65,7 @@ public static class MauiProgram
 
     private static IServiceCollection RegisterServices(this IServiceCollection services)
     {
+        services.AddSingleton<IMessageDialogService, MessageDialogService>();
         services.AddSingleton<IMoviesDatabaseService, MoviesDatabaseService>();
 
         return services;
