@@ -86,8 +86,6 @@ public partial class AboutViewModel : BaseViewModel
 
     private async Task ShowToastMessage(string message, string? exceptionSource)
     {
-        var toast = Toast.Make($"{message} Src: {exceptionSource}", ToastDuration.Long, 12);
-
-        await toast.Show();
+        await Toast.Make($"{message} Src: {exceptionSource}", ToastDuration.Long, 12).Show();
     }
 }

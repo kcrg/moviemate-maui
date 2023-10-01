@@ -76,6 +76,12 @@
 	  <ProjectReference Include="..\MovieMate.Api\MovieMate.Api.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Views\MovieAddOrEditView.xaml.cs">
+	    <DependentUpon>MovieAddOrEditView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 	<!-- Build Properties must be defined within these property groups to ensure successful publishing
        to the Mac App Store. See: https://aka.ms/maui-publish-app-store#define-build-properties-in-your-project-file -->
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Debug'">

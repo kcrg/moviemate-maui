@@ -3,11 +3,47 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
-    Title="MovieDetailsView">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+    xmlns:vm="clr-namespace:MovieMate.Maui.ViewModels"
+    Title="{Binding Movie.Title}"
+    x:DataType="vm:MovieDetailsViewModel">
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="8"
+        VerticalOptions="Center">
+        <Label HorizontalOptions="Center" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Title: " />
+                    <Span Text="{Binding Movie.Title}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Director: " />
+                    <Span Text="{Binding Movie.Director}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Year: " />
+                    <Span Text="{Binding Movie.Year}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Rate: " />
+                    <Span Text="{Binding Movie.Rate}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </VerticalStackLayout>
 </mvvm:TinyView>

@@ -2,9 +2,9 @@ using MovieMate.Maui.ViewModels;
 
 namespace MovieMate.Maui.Views;
 
-public partial class MovieEditView
+public partial class MovieAddOrEditView
 {
-	public MovieEditView(MovieEditViewModel vm)
+	public MovieAddOrEditView(MovieAddOrEditViewModel vm)
 	{
 		InitializeComponent();
 

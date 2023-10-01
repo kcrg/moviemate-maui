@@ -47,7 +47,7 @@ public static class MauiProgram
     {
         services.AddTransient<MovieCollectionView>();
         services.AddTransient<MovieDetailsView>();
-        services.AddTransient<MovieEditView>();
+        services.AddTransient<MovieAddOrEditView>();
         services.AddTransient<AboutView>();
 
         return services;
@@ -57,7 +57,7 @@ public static class MauiProgram
     {
         services.AddTransient<MovieCollectionViewModel>();
         services.AddTransient<MovieDetailsViewModel>();
-        services.AddTransient<MovieEditViewModel>();
+        services.AddTransient<MovieAddOrEditViewModel>();
         services.AddTransient<AboutViewModel>();
 
         return services;
@@ -66,7 +66,6 @@ public static class MauiProgram
     private static IServiceCollection RegisterServices(this IServiceCollection services)
     {
         services.AddSingleton<IMoviesDatabaseService, MoviesDatabaseService>();
-        services.AddSingleton<INavigationService, NavigationService>();
 
         return services;
     }

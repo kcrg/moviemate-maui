@@ -9,12 +9,19 @@
     xmlns:vm="clr-namespace:MovieMate.Maui.ViewModels"
     Title="Collection"
     x:DataType="vm:MovieCollectionViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsListNotNullOrEmptyConverter x:Key="IsListNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
         <controls:BaseToolbarItem
             Command="{Binding WipeListCommand}"
-            Glyph="{StaticResource IconTrash}"
+            Glyph="{StaticResource IconTrashX}"
             GlyphColor="{AppThemeBinding Light={StaticResource ContrastColorLight},
-                                         Dark={StaticResource ContrastColorDark}}" />
+                                         Dark={StaticResource ContrastColorDark}}"
+            IsEnabled="{Binding MovieList, Converter={StaticResource IsListNotNullOrEmptyConverter}}" />
         <controls:BaseToolbarItem
             Command="{Binding AddMovieCommand}"
             Glyph="{StaticResource IconPlus}"
@@ -23,6 +30,7 @@
     </ContentPage.ToolbarItems>
 
     <Grid
+        x:Name="GridWithAnimation"
         toolkit:StateContainer.CurrentState="{Binding CurrentState}"
         HorizontalOptions="Fill"
         VerticalOptions="Fill">
@@ -59,25 +67,86 @@
             </VerticalStackLayout>
             <Grid toolkit:StateView.StateKey="Success">
                 <RefreshView Command="{Binding RefreshCommand, Mode=OneTime}" IsRefreshing="{Binding IsRefreshing}">
-                    <CollectionView ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding MovieList}">
+                    <CollectionView
+                        x:Name="collectionView"
+                        ItemSizingStrategy="MeasureAllItems"
+                        ItemsSource="{Binding MovieList}">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="m:MovieDto">
-                                <Grid>
+                                <ContentView>
+                                    <ContentView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieCollectionViewModel}}, Path=ShowMovieDetailsCommand, Mode=OneTime}" CommandParameter="{Binding .}" />
+                                    </ContentView.GestureRecognizers>
+
                                     <Border Margin="8,0" BackgroundColor="{AppThemeBinding Light={StaticResource ControlsBackgroundColorLight}, Dark={StaticResource ControlsBackgroundColorDark}}">
                                         <Border.StrokeShape>
                                             <RoundRectangle CornerRadius="12" />
                                         </Border.StrokeShape>
-                                        <VerticalStackLayout Margin="12">
-                                            <Label Text="{Binding Title}" />
-                                            <Label Text="{Binding Director}" />
-                                            <Label Text="{Binding Year}" />
-                                            <Label Text="{Binding Rate}" />
-                                        </VerticalStackLayout>
+                                        <Grid
+                                            Padding="8"
+                                            ColumnDefinitions="*,Auto,Auto"
+                                            ColumnSpacing="8"
+                                            RowDefinitions="Auto, Auto, Auto, Auto"
+                                            RowSpacing="6">
+
+                                            <Label
+                                                FontFamily="{StaticResource LatoBlack}"
+                                                MaxLines="2"
+                                                Text="{Binding Title}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                MaxLines="1"
+                                                Text="{Binding Director}" />
+                                            <Label
+                                                Grid.Row="2"
+                                                MaxLines="1"
+                                                Text="{Binding Year}" />
+                                            <Label
+                                                Grid.Row="3"
+                                                MaxLines="1"
+                                                Text="{Binding Rate}" />
+
+                                            <ImageButton
+                                                Grid.RowSpan="4"
+                                                Grid.Column="1"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieCollectionViewModel}}, Path=DeleteMovieCommand, Mode=OneTime}"
+                                                CommandParameter="{Binding ., Mode=OneTime}"
+                                                HeightRequest="32"
+                                                VerticalOptions="Center"
+                                                WidthRequest="48">
+                                                <ImageButton.Source>
+                                                    <FontImageSource
+                                                        FontFamily="{StaticResource IconFont}"
+                                                        Glyph="{StaticResource IconTrash}"
+                                                        Size="44"
+                                                        Color="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                                                                Dark={StaticResource ContrastColorDark}}" />
+                                                </ImageButton.Source>
+                                            </ImageButton>
+
+                                            <ImageButton
+                                                Grid.RowSpan="4"
+                                                Grid.Column="2"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieCollectionViewModel}}, Path=EditMovieCommand, Mode=OneTime}"
+                                                CommandParameter="{Binding ., Mode=OneTime}"
+                                                HeightRequest="32"
+                                                VerticalOptions="Center"
+                                                WidthRequest="48">
+                                                <ImageButton.Source>
+                                                    <FontImageSource
+                                                        FontFamily="{StaticResource IconFont}"
+                                                        Glyph="{StaticResource IconEdit}"
+                                                        Size="44"
+                                                        Color="{AppThemeBinding Light={StaticResource ContrastColorLight},
+                                                                                Dark={StaticResource ContrastColorDark}}" />
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                        </Grid>
                                     </Border>
-                                </Grid>
+                                </ContentView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
 
@@ -108,7 +177,6 @@
                         </CollectionView.Footer>
                     </CollectionView>
                 </RefreshView>
-
             </Grid>
         </toolkit:StateContainer.StateViews>
     </Grid>

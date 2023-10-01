@@ -13,6 +13,6 @@ public partial class AppShell : Shell
     private void RegisterRoutes()
     {
         Routing.RegisterRoute(nameof(MovieDetailsView), typeof(MovieDetailsView));
-        Routing.RegisterRoute(nameof(MovieEditView), typeof(MovieEditView));
+        Routing.RegisterRoute(nameof(MovieAddOrEditView), typeof(MovieAddOrEditView));
     }
 }
